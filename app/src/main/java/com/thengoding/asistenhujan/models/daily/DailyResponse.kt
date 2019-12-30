@@ -8,7 +8,7 @@ data class DailyResponse(
     @SerializedName("country_code")
     val countryCode: String?,
     @SerializedName("data")
-    val `data`: List<DailyData?>?,
+    val `data`: List<DailyData>,
     @SerializedName("lat")
     val lat: String?,
     @SerializedName("lon")

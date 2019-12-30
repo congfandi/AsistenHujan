@@ -5,17 +5,27 @@ import com.thengoding.asistenhujan.models.Weather
 
 data class DailyData(
     @SerializedName("app_max_temp")
-    val appMaxTemp: Int?,
+    val appMaxTemp: Double?,
     @SerializedName("app_min_temp")
-    val appMinTemp: Int?,
+    val appMinTemp: Double?,
     @SerializedName("clouds")
-    val clouds: Int?,
+    val clouds: Double?,
+    @SerializedName("clouds_hi")
+    val cloudsHi: Double?,
+    @SerializedName("clouds_low")
+    val cloudsLow: Double?,
+    @SerializedName("clouds_mid")
+    val cloudsMid: Double?,
     @SerializedName("datetime")
     val datetime: String?,
     @SerializedName("dewpt")
-    val dewpt: Int?,
+    val dewpt: Double?,
+    @SerializedName("high_temp")
+    val highTemp: Double?,
+    @SerializedName("low_temp")
+    val lowTemp: Double?,
     @SerializedName("max_dhi")
-    val maxDhi: String?,
+    val maxDhi: Any?,
     @SerializedName("max_temp")
     val maxTemp: Double?,
     @SerializedName("min_temp")
@@ -23,41 +33,39 @@ data class DailyData(
     @SerializedName("moon_phase")
     val moonPhase: Double?,
     @SerializedName("moonrise_ts")
-    val moonriseTs: Int?,
+    val moonriseTs: Double?,
     @SerializedName("moonset_ts")
-    val moonsetTs: Int?,
-    @SerializedName("pod")
-    val pod: String?,
+    val moonsetTs: Double?,
+    @SerializedName("ozone")
+    val ozone: Double?,
     @SerializedName("pop")
-    val pop: Int?,
+    val pop: Double?,
     @SerializedName("precip")
     val precip: Double?,
     @SerializedName("pres")
-    val pres: Int?,
+    val pres: Double?,
     @SerializedName("rh")
-    val rh: Int?,
+    val rh: Double?,
     @SerializedName("slp")
     val slp: Double?,
     @SerializedName("snow")
     val snow: Double?,
     @SerializedName("snow_depth")
-    val snowDepth: Int?,
+    val snowDepth: Double?,
     @SerializedName("sunrise_ts")
-    val sunriseTs: Int?,
+    val sunriseTs: Double?,
     @SerializedName("sunset_ts")
-    val sunsetTs: Int?,
+    val sunsetTs: Double?,
     @SerializedName("temp")
-    val temp: Int?,
-    @SerializedName("timestamp_local")
-    val timestampLocal: String?,
-    @SerializedName("timestamp_utc")
-    val timestampUtc: String?,
+    val temp: Double?,
     @SerializedName("ts")
-    val ts: String?,
+    val ts: Double?,
     @SerializedName("uv")
     val uv: Double?,
+    @SerializedName("valid_date")
+    val validDate: String?,
     @SerializedName("vis")
-    val vis: Int?,
+    val vis: Double?,
     @SerializedName("weather")
     val weather: Weather?,
     @SerializedName("wind_cdir")
@@ -65,7 +73,9 @@ data class DailyData(
     @SerializedName("wind_cdir_full")
     val windCdirFull: String?,
     @SerializedName("wind_dir")
-    val windDir: Int?,
+    val windDir: Double?,
+    @SerializedName("wind_gust_spd")
+    val windGustSpd: Double?,
     @SerializedName("wind_spd")
     val windSpd: Double?
 )

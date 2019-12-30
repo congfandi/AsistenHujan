@@ -8,7 +8,7 @@ data class HourlyResponse(
     @SerializedName("country_code")
     val countryCode: String?,
     @SerializedName("data")
-    val `data`: List<HourlyData?>?,
+    val `data`: List<HourlyData>,
     @SerializedName("lat")
     val lat: String?,
     @SerializedName("lon")

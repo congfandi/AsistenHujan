@@ -11,13 +11,13 @@ data class HourlyData(
     @SerializedName("datetime")
     val datetime: String?,
     @SerializedName("dewpt")
-    val dewpt: Int?,
+    val dewpt: Double?,
     @SerializedName("dhi")
-    val dhi: Int?,
+    val dhi: Double?,
     @SerializedName("dni")
-    val dni: Int?,
+    val dni: Double?,
     @SerializedName("ghi")
-    val ghi: Int?,
+    val ghi: Double?,
     @SerializedName("pod")
     val pod: String?,
     @SerializedName("pop")
@@ -25,9 +25,9 @@ data class HourlyData(
     @SerializedName("precip")
     val precip: Double?,
     @SerializedName("pres")
-    val pres: Int?,
+    val pres: Double?,
     @SerializedName("rh")
-    val rh: Int?,
+    val rh: Double?,
     @SerializedName("slp")
     val slp: Double?,
     @SerializedName("snow")
@@ -35,9 +35,9 @@ data class HourlyData(
     @SerializedName("snow6h")
     val snow6h: Double?,
     @SerializedName("snow_depth")
-    val snowDepth: Int?,
+    val snowDepth: Double?,
     @SerializedName("solar_rad")
-    val solarRad: Int?,
+    val solarRad: Double?,
     @SerializedName("temp")
     val temp: Double?,
     @SerializedName("timestamp_local")
@@ -49,7 +49,7 @@ data class HourlyData(
     @SerializedName("uv")
     val uv: Double?,
     @SerializedName("vis")
-    val vis: Int?,
+    val vis: Double?,
     @SerializedName("weather")
     val weather: Weather?,
     @SerializedName("wind_cdir")
@@ -57,7 +57,7 @@ data class HourlyData(
     @SerializedName("wind_cdir_full")
     val windCdirFull: String?,
     @SerializedName("wind_dir")
-    val windDir: Int?,
+    val windDir: Double?,
     @SerializedName("wind_spd")
     val windSpd: Double?
 )
