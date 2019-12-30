@@ -20,7 +20,7 @@ class CurrentViewModel : ViewModel() {
 
     internal fun loadData() {
         val apiService = ApiClient.config()?.create(ApiService::class.java)
-        val request = apiService?.current("-7.054360", "113.422670", API_KEY)
+        val request = apiService?.current("-6.915222", "107.6807272", API_KEY)
         request?.enqueue(object : Callback<CurrentResponse> {
             override fun onFailure(call: Call<CurrentResponse>, t: Throwable) {
                 Log.e("gagal cuy", t.toString())
@@ -31,7 +31,7 @@ class CurrentViewModel : ViewModel() {
                 response: Response<CurrentResponse>
             ) {
                 Log.e("sukses cuy", "${response.body()?.toString()}")
-//                currentData.postValue(response.body()?.currentData?.get(0))
+                currentData.postValue(response.body()?.data?.get(0))
             }
 
         })

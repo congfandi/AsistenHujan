@@ -9,6 +9,7 @@ import com.thengoding.asistenhujan.R
 import com.thengoding.asistenhujan.WeatherAdapter
 import com.thengoding.asistenhujan.viewmodels.CurrentViewModel
 import kotlinx.android.synthetic.main.activity_main.*
+import setImage
 
 class MainActivity : AppCompatActivity() {
 
@@ -21,7 +22,11 @@ class MainActivity : AppCompatActivity() {
         val liveData = CurrentViewModel()
         liveData.loadData()
         liveData.getData().observe(this, Observer {
-//            Log.e("hasil", it.city_name)
+            txt_location.text = "${it.cityName}, ${it.countryCode}"
+            txt_weather_temp.text = "${it.temp}\u2103"
+            txt_day.text = it.lastObTime
+            txt_weather_info.text =it.weather.description
+            img_weather_status.setImage(it.weather.icon)
         })
 
     }
