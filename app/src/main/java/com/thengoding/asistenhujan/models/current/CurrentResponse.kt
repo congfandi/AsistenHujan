@@ -1,6 +1,12 @@
 package com.thengoding.asistenhujan.models.current
 
+import androidx.annotation.Nullable
+import com.google.gson.annotations.SerializedName
+
 data class CurrentResponse(
-    val count: String,
-    val currentData: List<CurrentData>
+    @Nullable
+    @SerializedName("count")
+    val count: Int,
+    @SerializedName("data")
+    val `data`: List<CurrentData>
 )

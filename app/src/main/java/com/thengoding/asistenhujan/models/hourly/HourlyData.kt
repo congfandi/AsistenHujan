@@ -1,34 +1,63 @@
 package com.thengoding.asistenhujan.models.hourly
 
+import com.google.gson.annotations.SerializedName
 import com.thengoding.asistenhujan.models.Weather
 
 data class HourlyData(
-    val app_temp: Double,
-    val clouds: Int,
-    val datetime: String,
-    val dewpt: Int,
-    val dhi: Int,
-    val dni: Int,
-    val ghi: Int,
-    val pod: String,
-    val pop: Int,
-    val precip: Double,
-    val pres: Int,
-    val rh: Int,
-    val slp: Double,
-    val snow: Double,
-    val snow6h: Double,
-    val snow_depth: Int,
-    val solar_rad: Int,
-    val temp: Double,
-    val timestamp_local: String,
-    val timestamp_utc: String,
-    val ts: String,
-    val uv: Double,
-    val vis: Int,
-    val weather: Weather,
-    val wind_cdir: String,
-    val wind_cdir_full: String,
-    val wind_dir: Int,
-    val wind_spd: Double
+    @SerializedName("app_temp")
+    val appTemp: Double?,
+    @SerializedName("clouds")
+    val clouds: Int?,
+    @SerializedName("datetime")
+    val datetime: String?,
+    @SerializedName("dewpt")
+    val dewpt: Int?,
+    @SerializedName("dhi")
+    val dhi: Int?,
+    @SerializedName("dni")
+    val dni: Int?,
+    @SerializedName("ghi")
+    val ghi: Int?,
+    @SerializedName("pod")
+    val pod: String?,
+    @SerializedName("pop")
+    val pop: Int?,
+    @SerializedName("precip")
+    val precip: Double?,
+    @SerializedName("pres")
+    val pres: Int?,
+    @SerializedName("rh")
+    val rh: Int?,
+    @SerializedName("slp")
+    val slp: Double?,
+    @SerializedName("snow")
+    val snow: Double?,
+    @SerializedName("snow6h")
+    val snow6h: Double?,
+    @SerializedName("snow_depth")
+    val snowDepth: Int?,
+    @SerializedName("solar_rad")
+    val solarRad: Int?,
+    @SerializedName("temp")
+    val temp: Double?,
+    @SerializedName("timestamp_local")
+    val timestampLocal: String?,
+    @SerializedName("timestamp_utc")
+    val timestampUtc: String?,
+    @SerializedName("ts")
+    val ts: String?,
+    @SerializedName("uv")
+    val uv: Double?,
+    @SerializedName("vis")
+    val vis: Int?,
+    @SerializedName("weather")
+    val weather: Weather?,
+    @SerializedName("wind_cdir")
+    val windCdir: String?,
+    @SerializedName("wind_cdir_full")
+    val windCdirFull: String?,
+    @SerializedName("wind_dir")
+    val windDir: Int?,
+    @SerializedName("wind_spd")
+    val windSpd: Double?
 )

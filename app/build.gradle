@@ -18,13 +18,8 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
-        debug {
-            buildConfigField "String", "BASE_URL", "\"https://api.themoviedb.org/\""
-            buildConfigField "String", "API_KEY", "\"ed8cea6d4d9d6df9ad8b76de3a162547\""
-        }
+
         release {
-            buildConfigField "String", "\"BASE_URL", "https://api.themoviedb.org/\""
-            buildConfigField "String", "API_KEY", "change_api_here"
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
