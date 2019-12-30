@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
-class WeatherAdapter(val context: Context) : RecyclerView.Adapter<WeatherHolder>() {
+class WeatherAdapter(private val context: Context) : RecyclerView.Adapter<WeatherHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WeatherHolder {
         return WeatherHolder(
