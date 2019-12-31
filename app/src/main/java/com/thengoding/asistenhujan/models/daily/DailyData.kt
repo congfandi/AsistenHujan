@@ -10,9 +10,10 @@ package com.thengoding.asistenhujan.models.daily
 
 import androidx.room.Entity
 import com.google.gson.annotations.SerializedName
+import com.thengoding.asistenhujan.helpers.DAILY
 import com.thengoding.asistenhujan.models.Weather
 
-@Entity(tableName = "DailyData")
+@Entity(tableName = DAILY)
 data class DailyData(
     @SerializedName("app_max_temp")
     val appMaxTemp: Double?,

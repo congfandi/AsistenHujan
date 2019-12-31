@@ -10,9 +10,10 @@ package com.thengoding.asistenhujan.models.current
 
 import androidx.room.Entity
 import com.google.gson.annotations.SerializedName
+import com.thengoding.asistenhujan.helpers.CURRENT
 import com.thengoding.asistenhujan.models.Weather
 
-@Entity(tableName = "currentData")
+@Entity(tableName = CURRENT)
 data class CurrentData(
     @SerializedName("app_temp")
     val appTemp: Double,
