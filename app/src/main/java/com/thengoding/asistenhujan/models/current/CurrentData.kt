@@ -8,21 +8,18 @@
 
 package com.thengoding.asistenhujan.models.current
 
-import androidx.room.Entity
 import com.google.gson.annotations.SerializedName
-import com.thengoding.asistenhujan.helpers.CURRENT
 import com.thengoding.asistenhujan.models.Weather
 
-@Entity(tableName = CURRENT)
 data class CurrentData(
     @SerializedName("app_temp")
     val appTemp: Double,
     @SerializedName("aqi")
-    val aqi: Int,
+    val aqi: Double,
     @SerializedName("city_name")
     val cityName: String,
     @SerializedName("clouds")
-    val clouds: Int,
+    val clouds: Double,
     @SerializedName("country_code")
     val countryCode: String,
     @SerializedName("datetime")
@@ -50,15 +47,15 @@ data class CurrentData(
     @SerializedName("pod")
     val pod: String,
     @SerializedName("precip")
-    val precip: Int,
+    val precip: Double,
     @SerializedName("pres")
     val pres: Double,
     @SerializedName("rh")
-    val rh: Int,
+    val rh: Double,
     @SerializedName("slp")
     val slp: Double,
     @SerializedName("snow")
-    val snow: Int,
+    val snow: Double,
     @SerializedName("solar_rad")
     val solarRad: Double,
     @SerializedName("state_code")
@@ -74,7 +71,7 @@ data class CurrentData(
     @SerializedName("timezone")
     val timezone: String,
     @SerializedName("ts")
-    val ts: Int,
+    val ts: Double,
     @SerializedName("uv")
     val uv: Double,
     @SerializedName("vis")
@@ -86,7 +83,7 @@ data class CurrentData(
     @SerializedName("wind_cdir_full")
     val windCdirFull: String,
     @SerializedName("wind_dir")
-    val windDir: Int,
+    val windDir: Double,
     @SerializedName("wind_spd")
     val windSpd: Double
 )

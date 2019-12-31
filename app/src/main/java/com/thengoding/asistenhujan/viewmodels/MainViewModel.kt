@@ -8,6 +8,7 @@
 
 package com.thengoding.asistenhujan.viewmodels
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -36,6 +37,7 @@ class MainViewModel : ViewModel() {
         val request = apiService?.current("-6.915222", "107.6807272", API_KEY, LANGUAGE)
         request?.enqueue(object : Callback<CurrentResponse> {
             override fun onFailure(call: Call<CurrentResponse>, t: Throwable) {
+
             }
 
             override fun onResponse(

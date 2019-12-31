@@ -8,12 +8,10 @@
 
 package com.thengoding.asistenhujan.models.hourly
 
-import androidx.room.Entity
 import com.google.gson.annotations.SerializedName
-import com.thengoding.asistenhujan.helpers.HOURLY
 import com.thengoding.asistenhujan.models.Weather
 
-@Entity(tableName = HOURLY)
+
 data class HourlyData(
     @SerializedName("app_temp")
     val appTemp: Double?,

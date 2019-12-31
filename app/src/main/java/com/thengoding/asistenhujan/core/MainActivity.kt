@@ -8,11 +8,17 @@
 
 package com.thengoding.asistenhujan.core
 
+import android.Manifest
+import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.annotation.RequiresApi
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.gms.location.LocationServices
@@ -26,13 +32,60 @@ import com.thengoding.asistenhujan.extentions.setImage
 
 class MainActivity : AppCompatActivity() {
 
+    private fun checkPermission() {
+        if (ContextCompat.checkSelfPermission(
+                this,
+                Manifest.permission.ACCESS_FINE_LOCATION
+            ) != PackageManager.PERMISSION_GRANTED
+        ) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(
+                    MainActivity@ this,
+                    Manifest.permission.ACCESS_FINE_LOCATION
+                )
+            ) {
+                ActivityCompat.requestPermissions(
+                    MainActivity@ this,
+                    listOf(Manifest.permission.ACCESS_FINE_LOCATION).toTypedArray(), 1
+                )
+            } else {
+                ActivityCompat.requestPermissions(
+                    MainActivity@ this,
+                    listOf(Manifest.permission.ACCESS_FINE_LOCATION).toTypedArray(), 1
+                )
+            }
+        }
+    }
 
     private fun currentLocation() {
         val mFusedLocation = LocationServices.getFusedLocationProviderClient(this)
         mFusedLocation.lastLocation.addOnSuccessListener(
             this
         ) { location ->
+            Log.e("hasil", "${location.latitude}")
+        }
+    }
 
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        when (requestCode) {
+            1 -> {
+                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    if (ContextCompat.checkSelfPermission(
+                            MainActivity@ this,
+                            Manifest.permission.ACCESS_FINE_LOCATION
+                        ) == PackageManager.PERMISSION_GRANTED
+                    ) {
+                        Toast.makeText(this, "Permission Granted", Toast.LENGTH_SHORT).show()
+                    }
+                } else {
+                    Toast.makeText(this, "Permission Denied", Toast.LENGTH_SHORT).show()
+                }
+                return
+            }
         }
     }
 
@@ -40,7 +93,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        checkPermission()
         currentLocation()
         rc_list_weather.layoutManager =
             LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)

@@ -8,13 +8,8 @@
 
 package com.thengoding.asistenhujan.models
 
-import androidx.room.Entity
-import androidx.room.PrimaryKey
-import com.thengoding.asistenhujan.helpers.LOCATION
 
-@Entity(tableName = LOCATION)
 class LocationData(
-    @PrimaryKey
     var id: Int,
     var lat: Long,
     var lon: Long,
