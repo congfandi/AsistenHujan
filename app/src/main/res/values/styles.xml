@@ -1,3 +1,11 @@
+<!--
+  ~ Asisten Hujan
+  ~ styles.xml
+  ~ Created by thengoding.com on 31/12/2019
+  ~ Copyright © 2019 The Ngoding. All rights reserved.
+  ~
+  -->
+
 <resources>
 
     <!-- Base application theme. -->
@@ -8,4 +16,9 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="AppTheme.Splash" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowBackground">@drawable/ic_cloud_white_24dp</item>
+    </style>
 </resources>

@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Asisten Hujan
+  ~ colors.xml
+  ~ Created by thengoding.com on 31/12/2019
+  ~ Copyright © 2019 The Ngoding. All rights reserved.
+  ~
+  -->
+
 <resources>
     <color name="colorPrimary">#3CA6F8</color>
     <color name="colorPrimaryDark">#0E66E4</color>

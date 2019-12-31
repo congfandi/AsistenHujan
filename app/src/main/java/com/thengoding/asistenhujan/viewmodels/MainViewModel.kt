@@ -1,10 +1,16 @@
+/*
+ * Asisten Hujan
+ * MainViewModel.kt
+ * Created by thengoding.com on 31/12/2019
+ * Copyright © 2019 The Ngoding. All rights reserved.
+ *
+ */
+
 package com.thengoding.asistenhujan.viewmodels
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.google.gson.JsonObject
 import com.thengoding.asistenhujan.api.ApiClient
 import com.thengoding.asistenhujan.api.ApiService
 import com.thengoding.asistenhujan.helpers.API_KEY
@@ -19,7 +25,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class CurrentViewModel : ViewModel() {
+class MainViewModel : ViewModel() {
 
     private val currentData = MutableLiveData<CurrentData>()
     private val hourlyData = MutableLiveData<List<HourlyData>>()
@@ -30,14 +36,12 @@ class CurrentViewModel : ViewModel() {
         val request = apiService?.current("-6.915222", "107.6807272", API_KEY, LANGUAGE)
         request?.enqueue(object : Callback<CurrentResponse> {
             override fun onFailure(call: Call<CurrentResponse>, t: Throwable) {
-                Log.e("gagal cuy", t.toString())
             }
 
             override fun onResponse(
                 call: Call<CurrentResponse>,
                 response: Response<CurrentResponse>
             ) {
-                Log.e("sukses cuy", "${response.body()?.toString()}")
                 currentData.postValue(response.body()?.data?.get(0))
             }
 
@@ -53,15 +57,13 @@ class CurrentViewModel : ViewModel() {
         val request = apiService?.hourly("-6.915222", "107.6807272", API_KEY, LANGUAGE)
         request?.enqueue(object : Callback<HourlyResponse> {
             override fun onFailure(call: Call<HourlyResponse>, t: Throwable) {
-                Log.e("gagal cuy", t.toString())
             }
 
             override fun onResponse(
                 call: Call<HourlyResponse>,
                 response: Response<HourlyResponse>
             ) {
-                Log.e("sukses cuy", "${response.body()?.toString()}")
-                hourlyData.postValue(response.body()?.data)
+                hourlyData.postValue(response.body()?.data?.subList(0, 5))
             }
 
         })
@@ -76,15 +78,13 @@ class CurrentViewModel : ViewModel() {
         val request = apiService?.daily("-6.915222", "107.6807272", API_KEY, LANGUAGE)
         request?.enqueue(object : Callback<DailyResponse> {
             override fun onFailure(call: Call<DailyResponse>, t: Throwable) {
-                Log.e("gagal cuy", t.toString())
             }
 
             override fun onResponse(
                 call: Call<DailyResponse>,
                 response: Response<DailyResponse>
             ) {
-                Log.e("sukses cuy", "${response.body()?.toString()}")
-                dailyData.postValue(response.body()?.data)
+                dailyData.postValue(response.body()?.data?.subList(1, 7))
             }
 
         })

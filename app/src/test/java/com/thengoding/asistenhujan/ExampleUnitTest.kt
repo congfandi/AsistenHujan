@@ -1,5 +1,8 @@
 package com.thengoding.asistenhujan
 
+import com.thengoding.asistenhujan.adapters.DailyHolder
+import com.thengoding.asistenhujan.extentions.dateToDay
+import com.thengoding.asistenhujan.extentions.dateToName
 import org.junit.Test
 
 import org.junit.Assert.*
@@ -12,6 +15,6 @@ import org.junit.Assert.*
 class ExampleUnitTest {
     @Test
     fun addition_isCorrect() {
-        assertEquals(4, 2 + 2)
+        assertEquals("Minggu, 29 Desember 2019", dateToName("2019-12-29"))
     }
 }

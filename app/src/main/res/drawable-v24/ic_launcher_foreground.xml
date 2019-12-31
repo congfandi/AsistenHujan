@@ -1,3 +1,11 @@
+<!--
+  ~ Asisten Hujan
+  ~ ic_launcher_foreground.xml
+  ~ Created by thengoding.com on 31/12/2019
+  ~ Copyright © 2019 The Ngoding. All rights reserved.
+  ~
+  -->
+
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:aapt="http://schemas.android.com/aapt"
     android:width="108dp"
