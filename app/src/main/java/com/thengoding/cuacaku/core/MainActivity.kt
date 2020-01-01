@@ -22,6 +22,7 @@ import androidx.fragment.app.Fragment
 import com.google.android.gms.location.LocationServices
 import com.thengoding.cuacaku.R
 import com.thengoding.cuacaku.databases.DatabaseHelper
+import com.thengoding.cuacaku.helpers.SharePreferenceHelper
 import com.thengoding.cuacaku.ui.MainFragment
 
 class MainActivity : AppCompatActivity() {
@@ -56,15 +57,19 @@ class MainActivity : AppCompatActivity() {
             this
         ) { location ->
             Log.e("hasil", "${location.latitude}")
-            val db = DatabaseHelper().getDatabase().reference
-            db.child("locations").push().setValue(
-                mapOf(
-                    "lat" to location.latitude,
-                    "lon" to location.longitude
-                )
-            ).addOnCompleteListener {
-                Log.e("hasil", "${it.isSuccessful} ${it.exception.toString()}")
-            }
+            SharePreferenceHelper(this).saveLocation(
+                "${location.latitude}",
+                "${location.longitude}"
+            )
+//            val db = DatabaseHelper().getDatabase().reference
+//            db.child("locations").push().setValue(
+//                mapOf(
+//                    "lat" to location.latitude,
+//                    "lon" to location.longitude
+//                )
+//            ).addOnCompleteListener {
+//                Log.e("hasil", "${it.isSuccessful} ${it.exception.toString()}")
+//            }
         }
     }
 

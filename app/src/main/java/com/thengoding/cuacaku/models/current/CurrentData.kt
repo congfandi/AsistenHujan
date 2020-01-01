@@ -13,77 +13,77 @@ import com.thengoding.cuacaku.models.Weather
 
 data class CurrentData(
     @SerializedName("app_temp")
-    val appTemp: Double,
+    val appTemp: Double?,
     @SerializedName("aqi")
-    val aqi: Double,
+    val aqi: Double?,
     @SerializedName("city_name")
-    val cityName: String,
+    val cityName: String?,
     @SerializedName("clouds")
-    val clouds: Double,
+    val clouds: Double?,
     @SerializedName("country_code")
-    val countryCode: String,
+    val countryCode: String?,
     @SerializedName("datetime")
-    val datetime: String,
+    val datetime: String?,
     @SerializedName("dewpt")
-    val dewpt: Double,
+    val dewpt: Double?,
     @SerializedName("dhi")
-    val dhi: Double,
+    val dhi: Double?,
     @SerializedName("dni")
-    val dni: Double,
+    val dni: Double?,
     @SerializedName("elev_angle")
-    val elevAngle: Double,
+    val elevAngle: Double?,
     @SerializedName("ghi")
-    val ghi: Double,
+    val ghi: Double?,
     @SerializedName("h_angle")
-    val hAngle: Double,
+    val hAngle: Double?,
     @SerializedName("last_ob_time")
-    val lastObTime: String,
+    val lastObTime: String?,
     @SerializedName("lat")
-    val lat: Double,
+    val lat: Double?,
     @SerializedName("lon")
-    val lon: Double,
+    val lon: Double?,
     @SerializedName("ob_time")
-    val obTime: String,
+    val obTime: String?,
     @SerializedName("pod")
-    val pod: String,
+    val pod: String?,
     @SerializedName("precip")
-    val precip: Double,
+    val precip: Double?,
     @SerializedName("pres")
-    val pres: Double,
+    val pres: Double?,
     @SerializedName("rh")
-    val rh: Double,
+    val rh: Double?,
     @SerializedName("slp")
-    val slp: Double,
+    val slp: Double?,
     @SerializedName("snow")
-    val snow: Double,
+    val snow: Double?,
     @SerializedName("solar_rad")
-    val solarRad: Double,
+    val solarRad: Double?,
     @SerializedName("state_code")
-    val stateCode: String,
+    val stateCode: String?,
     @SerializedName("station")
-    val station: String,
+    val station: String?,
     @SerializedName("sunrise")
-    val sunrise: String,
+    val sunrise: String?,
     @SerializedName("sunset")
-    val sunset: String,
+    val sunset: String?,
     @SerializedName("temp")
-    val temp: Double,
+    val temp: Double?,
     @SerializedName("timezone")
-    val timezone: String,
+    val timezone: String?,
     @SerializedName("ts")
-    val ts: Double,
+    val ts: Double?,
     @SerializedName("uv")
-    val uv: Double,
+    val uv: Double?,
     @SerializedName("vis")
-    val vis: Double,
+    val vis: Double?,
     @SerializedName("weather")
-    val weather: Weather,
+    val weather: Weather?,
     @SerializedName("wind_cdir")
-    val windCdir: String,
+    val windCdir: String?,
     @SerializedName("wind_cdir_full")
-    val windCdirFull: String,
+    val windCdirFull: String?,
     @SerializedName("wind_dir")
-    val windDir: Double,
+    val windDir: Double?,
     @SerializedName("wind_spd")
-    val windSpd: Double
+    val windSpd: Double?
 )

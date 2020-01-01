@@ -71,15 +71,15 @@ class MainFragment : Fragment() {
         liveData = ViewModelProviders.of(this).get(MainViewModel::class.java)
         rcListWeather.layoutManager =
             LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        liveData.loadData()
-        liveData.getData().observe(this, Observer { currentData ->
+        context?.let { liveData.loadCurrent(it) }
+        liveData.getCurrent().observe(this, Observer { currentData ->
             txtLocation.text = "${currentData.cityName}, ${currentData.countryCode}"
             txtWeatherTemp.text = "${currentData.temp}\u2103"
-            txtDay.text = "${dateToName(currentData.lastObTime.split("T")[0])}"
-            txtWeatherInfo.text = currentData.weather.description
-            imgWeatherStatus.setImage(currentData.weather.icon)
+            txtDay.text = "${currentData.lastObTime?.split("T")?.get(0)?.let { dateToName(it) }}"
+            txtWeatherInfo.text = currentData.weather?.description ?: ""
+            currentData.weather?.icon?.let { imgWeatherStatus.setImage(it) }
         })
-        liveData.loadHourly()
+        context?.let { liveData.loadHourly(it) }
         liveData.getHourly().observe(this, Observer {
             rcListWeather.adapter =
                 context?.let { context -> HourlyAdapter(context, it) }
@@ -90,7 +90,7 @@ class MainFragment : Fragment() {
         }
 
         rcListWeatherDaily.layoutManager = LinearLayoutManager(context)
-        liveData.loadDaily()
+        context?.let { liveData.loadDaily(it) }
         liveData.getDaily().observe(this, Observer {
             rcListWeatherDaily.adapter =
                 context?.let { context -> DailyAdapter(context, it) }

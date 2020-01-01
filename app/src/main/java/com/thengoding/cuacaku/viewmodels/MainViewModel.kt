@@ -8,6 +8,7 @@
 
 package com.thengoding.cuacaku.viewmodels
 
+import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -15,6 +16,7 @@ import com.thengoding.cuacaku.api.ApiClient
 import com.thengoding.cuacaku.api.ApiService
 import com.thengoding.cuacaku.helpers.API_KEY
 import com.thengoding.cuacaku.helpers.LANGUAGE
+import com.thengoding.cuacaku.helpers.SharePreferenceHelper
 import com.thengoding.cuacaku.models.current.CurrentData
 import com.thengoding.cuacaku.models.current.CurrentResponse
 import com.thengoding.cuacaku.models.daily.DailyData
@@ -30,10 +32,13 @@ class MainViewModel : ViewModel() {
     private val currentData = MutableLiveData<CurrentData>()
     private val hourlyData = MutableLiveData<List<HourlyData>>()
     private val dailyData = MutableLiveData<List<DailyData>>()
+    private lateinit var queries: List<String>
 
-    internal fun loadData() {
+    internal fun loadCurrent(context: Context) {
+        val location = SharePreferenceHelper(context).getLocation()
+        queries = listOf(location[0],location[1], API_KEY, LANGUAGE)
         val apiService = ApiClient.config()?.create(ApiService::class.java)
-        val request = apiService?.current("-6.915222", "107.6807272", API_KEY, LANGUAGE)
+        val request = apiService?.current(queries[0], queries[1], queries[2], queries[3])
         request?.enqueue(object : Callback<CurrentResponse> {
             override fun onFailure(call: Call<CurrentResponse>, t: Throwable) {
 
@@ -49,13 +54,15 @@ class MainViewModel : ViewModel() {
         })
     }
 
-    internal fun getData(): LiveData<CurrentData> {
+    internal fun getCurrent(): LiveData<CurrentData> {
         return currentData
     }
 
-    internal fun loadHourly() {
+    internal fun loadHourly(context: Context) {
+        val location = SharePreferenceHelper(context).getLocation()
+        queries = listOf(location[0],location[1], API_KEY, LANGUAGE)
         val apiService = ApiClient.config()?.create(ApiService::class.java)
-        val request = apiService?.hourly("-6.915222", "107.6807272", API_KEY, LANGUAGE)
+        val request = apiService?.hourly(queries[0], queries[1], queries[2], queries[3])
         request?.enqueue(object : Callback<HourlyResponse> {
             override fun onFailure(call: Call<HourlyResponse>, t: Throwable) {
             }
@@ -74,9 +81,11 @@ class MainViewModel : ViewModel() {
         return hourlyData
     }
 
-    internal fun loadDaily() {
+    internal fun loadDaily(context: Context) {
+        val location = SharePreferenceHelper(context).getLocation()
+        queries = listOf(location[0],location[1], API_KEY, LANGUAGE)
         val apiService = ApiClient.config()?.create(ApiService::class.java)
-        val request = apiService?.daily("-6.915222", "107.6807272", API_KEY, LANGUAGE)
+        val request = apiService?.daily(queries[0], queries[1], queries[2], queries[3])
         request?.enqueue(object : Callback<DailyResponse> {
             override fun onFailure(call: Call<DailyResponse>, t: Throwable) {
             }
