@@ -10,7 +10,6 @@ package com.thengoding.cuacaku.models.current
 
 import com.google.gson.annotations.SerializedName
 import com.thengoding.cuacaku.models.Weather
-import io.realm.RealmObject
 
 data class CurrentData(
     @SerializedName("app_temp")
@@ -87,4 +86,4 @@ data class CurrentData(
     val windDir: Double,
     @SerializedName("wind_spd")
     val windSpd: Double
-) : RealmObject()
+)

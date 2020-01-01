@@ -9,7 +9,6 @@
 package com.thengoding.cuacaku.models
 
 import com.google.gson.annotations.SerializedName
-import io.realm.RealmObject
 
 
 data class Weather(
@@ -19,4 +18,4 @@ data class Weather(
     val description: String,
     @SerializedName("icon")
     val icon: String
-) : RealmObject()
+)

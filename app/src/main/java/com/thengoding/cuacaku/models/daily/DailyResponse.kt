@@ -9,8 +9,6 @@
 package com.thengoding.cuacaku.models.daily
 
 import com.google.gson.annotations.SerializedName
-import io.realm.RealmList
-import io.realm.RealmObject
 
 data class DailyResponse(
     @SerializedName("city_name")
@@ -18,7 +16,7 @@ data class DailyResponse(
     @SerializedName("country_code")
     val countryCode: String?,
     @SerializedName("data")
-    val `data`: RealmList<DailyData>,
+    val `data`: List<DailyData>,
     @SerializedName("lat")
     val lat: String?,
     @SerializedName("lon")
@@ -27,4 +25,4 @@ data class DailyResponse(
     val stateCode: String?,
     @SerializedName("timezone")
     val timezone: String?
-) : RealmObject()
+)

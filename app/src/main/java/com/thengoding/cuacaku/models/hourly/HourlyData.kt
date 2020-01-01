@@ -10,7 +10,6 @@ package com.thengoding.cuacaku.models.hourly
 
 import com.google.gson.annotations.SerializedName
 import com.thengoding.cuacaku.models.Weather
-import io.realm.RealmObject
 
 
 data class HourlyData(
@@ -70,4 +69,4 @@ data class HourlyData(
     val windDir: Double?,
     @SerializedName("wind_spd")
     val windSpd: Double?
-) : RealmObject()
+)

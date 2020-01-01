@@ -10,13 +10,11 @@ package com.thengoding.cuacaku.models.current
 
 import androidx.annotation.Nullable
 import com.google.gson.annotations.SerializedName
-import io.realm.RealmList
-import io.realm.RealmObject
 
 data class CurrentResponse(
     @Nullable
     @SerializedName("count")
     val count: Int,
     @SerializedName("data")
-    val `data`: RealmList<CurrentData>
-) : RealmObject()
+    val `data`: List<CurrentData>
+)

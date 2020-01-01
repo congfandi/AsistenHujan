@@ -9,8 +9,6 @@
 package com.thengoding.cuacaku.models.hourly
 
 import com.google.gson.annotations.SerializedName
-import io.realm.RealmList
-import io.realm.RealmObject
 
 data class HourlyResponse(
     @SerializedName("city_name")
@@ -18,7 +16,7 @@ data class HourlyResponse(
     @SerializedName("country_code")
     val countryCode: String?,
     @SerializedName("data")
-    val `data`: RealmList<HourlyData>,
+    val `data`: List<HourlyData>,
     @SerializedName("lat")
     val lat: String?,
     @SerializedName("lon")
@@ -27,4 +25,4 @@ data class HourlyResponse(
     val stateCode: String?,
     @SerializedName("timezone")
     val timezone: String?
-) : RealmObject()
+)
