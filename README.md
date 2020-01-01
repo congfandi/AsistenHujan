@@ -1,5 +1,5 @@
-# AsistenHujan
-aplikasi android untuk membantu memprediksi hujan di sekitar lokasi anda
+# Cuacaku
+aplikasi android untuk membantu melihat informasi cuaca ditempat2 yang anda inginkan
 
 # Bahasa
 Kotlin
