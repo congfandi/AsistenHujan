@@ -8,6 +8,8 @@
 
 package com.thengoding.cuacaku.models
 
+import io.realm.RealmObject
+
 
 class LocationData(
     var id: Int,
@@ -21,4 +23,4 @@ class LocationData(
     var address: String,
     var created: String,
     var updated: String
-)
+) : RealmObject()
