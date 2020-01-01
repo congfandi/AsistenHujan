@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1009325358987",
+    "firebase_url": "https://cuacaku-2c2e5.firebaseio.com",
+    "project_id": "cuacaku-2c2e5",
+    "storage_bucket": "cuacaku-2c2e5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1009325358987:android:cc72d55a2b4614d27d398e",
+        "android_client_info": {
+          "package_name": "com.thengoding.cuacaku"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1009325358987-dvjhdd64vt55civ9i45nus01e7kfj0p6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.thengoding.cuacaku",
+            "certificate_hash": "0165f15b0f934e96478c8d9155fab9cb2169a895"
+          }
+        },
+        {
+          "client_id": "1009325358987-jq9e8k8mtqc5vph1nb2kh74u3g07ip4h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBLSoc1FUsmiGss9rMeO7JcyeCKQduP_S8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1009325358987-jq9e8k8mtqc5vph1nb2kh74u3g07ip4h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
