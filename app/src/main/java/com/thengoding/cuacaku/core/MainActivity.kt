@@ -24,6 +24,7 @@ import com.google.android.gms.location.LocationServices
 import com.thengoding.cuacaku.adapters.DailyAdapter
 import com.thengoding.cuacaku.R
 import com.thengoding.cuacaku.adapters.HourlyAdapter
+import com.thengoding.cuacaku.databases.DatabaseHelper
 import com.thengoding.cuacaku.extentions.dateToName
 import com.thengoding.cuacaku.viewmodels.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*
@@ -61,6 +62,15 @@ class MainActivity : AppCompatActivity() {
             this
         ) { location ->
             Log.e("hasil", "${location.latitude}")
+            val db = DatabaseHelper().getDatabase().reference
+            db.child("locations").push().setValue(
+                mapOf(
+                    "lat" to location.latitude,
+                    "lon" to location.longitude
+                )
+            ).addOnCompleteListener {
+                Log.e("hasil", "${it.isSuccessful} ${it.exception.toString()}")
+            }
         }
     }
 
