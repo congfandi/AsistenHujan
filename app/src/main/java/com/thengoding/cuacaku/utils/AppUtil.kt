@@ -1,22 +1,16 @@
 /*
- * Asisten Hujan
- * AsistenExtention.kt
- * Created by thengoding.com on 31/12/2019
- * Copyright © 2019 The Ngoding. All rights reserved.
+ * Cuacaku
+ * AppUtil.kt
+ * Created by thengoding.com on 2/1/2020
+ * Copyright © 2020 The Ngoding. All rights reserved.
  *
  */
 
-package com.thengoding.cuacaku.extentions
+package com.thengoding.cuacaku.utils
 
 import android.os.Build
-import android.widget.ImageView
 import androidx.annotation.RequiresApi
-import com.bumptech.glide.Glide
 import java.time.LocalDate
-
-fun ImageView.setImage(icon: String) {
-    Glide.with(context).load("https://www.weatherbit.io/static/img/icons/$icon.png").into(this)
-}
 
 @RequiresApi(Build.VERSION_CODES.O)
 fun dateToDay(date: String): String {

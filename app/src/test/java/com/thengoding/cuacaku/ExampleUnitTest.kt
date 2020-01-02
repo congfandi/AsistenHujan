@@ -1,6 +1,6 @@
 package com.thengoding.cuacaku
 
-import com.thengoding.cuacaku.extentions.dateToName
+import com.thengoding.cuacaku.utils.dateToName
 import org.junit.Test
 
 import org.junit.Assert.*
@@ -13,6 +13,6 @@ import org.junit.Assert.*
 class ExampleUnitTest {
     @Test
     fun addition_isCorrect() {
-        assertEquals("Minggu, 29 Desember 2019", dateToName("2019-12-29"))
+        assertEquals("Kamis, 2 Januari 2020", dateToName("2020-01-02"))
     }
 }

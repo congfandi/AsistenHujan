@@ -1,7 +1,7 @@
 /*
  * Cuacaku
  * MainFragment.kt
- * Created by thengoding.com on 1/1/2020
+ * Created by thengoding.com on 2/1/2020
  * Copyright © 2020 The Ngoding. All rights reserved.
  *
  */
@@ -26,8 +26,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.thengoding.cuacaku.R
 import com.thengoding.cuacaku.adapters.DailyAdapter
 import com.thengoding.cuacaku.adapters.HourlyAdapter
-import com.thengoding.cuacaku.extentions.dateToName
 import com.thengoding.cuacaku.extentions.setImage
+import com.thengoding.cuacaku.utils.dateToName
 import com.thengoding.cuacaku.viewmodels.MainViewModel
 
 class MainFragment : Fragment() {
@@ -75,7 +75,7 @@ class MainFragment : Fragment() {
         liveData.getCurrent().observe(this, Observer { currentData ->
             txtLocation.text = "${currentData.cityName}, ${currentData.countryCode}"
             txtWeatherTemp.text = "${currentData.temp}\u2103"
-            txtDay.text = "${currentData.lastObTime?.split("T")?.get(0)?.let { dateToName(it) }}"
+            txtDay.text = "${currentData.datetime?.split(":")?.get(0)?.let { dateToName(it) }}"
             txtWeatherInfo.text = currentData.weather?.description ?: ""
             currentData.weather?.icon?.let { imgWeatherStatus.setImage(it) }
         })

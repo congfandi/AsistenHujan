@@ -1,7 +1,7 @@
 /*
  * Cuacaku
  * LoginViewModel.kt
- * Created by thengoding.com on 1/1/2020
+ * Created by thengoding.com on 2/1/2020
  * Copyright © 2020 The Ngoding. All rights reserved.
  *
  */

@@ -1,8 +1,8 @@
 /*
- * Asisten Hujan
+ * Cuacaku
  * Weather.kt
- * Created by thengoding.com on 31/12/2019
- * Copyright © 2019 The Ngoding. All rights reserved.
+ * Created by thengoding.com on 2/1/2020
+ * Copyright © 2020 The Ngoding. All rights reserved.
  *
  */
 

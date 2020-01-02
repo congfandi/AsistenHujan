@@ -24,9 +24,8 @@ class SharePreferenceHelper(val context: Context) {
     }
 
     fun getLocation(): List<String> {
-        val lat = pref.getString("lat", "-6.915222")!!
-        val lon = pref.getString("lon", "107.6807272")!!
-        Log.e("location ","lat $lat , lon $lon")
+        val lat = pref.getString("lat", "")!!
+        val lon = pref.getString("lon", "")!!
         return listOf(lat, lon)
     }
 }

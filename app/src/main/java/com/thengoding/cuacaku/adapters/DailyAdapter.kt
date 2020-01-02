@@ -1,8 +1,8 @@
 /*
- * Asisten Hujan
+ * Cuacaku
  * DailyAdapter.kt
- * Created by thengoding.com on 31/12/2019
- * Copyright © 2019 The Ngoding. All rights reserved.
+ * Created by thengoding.com on 2/1/2020
+ * Copyright © 2020 The Ngoding. All rights reserved.
  *
  */
 
@@ -18,9 +18,9 @@ import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.thengoding.cuacaku.R
-import com.thengoding.cuacaku.extentions.dateToDay
 import com.thengoding.cuacaku.models.daily.DailyData
 import com.thengoding.cuacaku.extentions.setImage
+import com.thengoding.cuacaku.utils.dateToDay
 
 class DailyAdapter(private val context: Context, private val dailyData: List<DailyData>) :
     RecyclerView.Adapter<DailyHolder>() {
