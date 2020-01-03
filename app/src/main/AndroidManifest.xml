@@ -14,7 +14,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".core.MainActivity" />
-        <activity android:name=".core.SplashActivity">
+        <activity android:name=".core.LoadingActivity" />
+        <activity android:name=".core.SplashActivity"
+            android:theme="@style/SplashTheme"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

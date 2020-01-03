@@ -10,9 +10,8 @@ package com.thengoding.cuacaku.models
 
 
 class LocationData(
-    var id: Int,
-    var lat: Long,
-    var lon: Long,
+    var lat: Double,
+    var lon: Double,
     var country: String,
     var province: String,
     var city: String,

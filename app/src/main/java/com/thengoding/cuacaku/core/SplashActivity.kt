@@ -1,7 +1,7 @@
 /*
  * Cuacaku
- * SplashActivity.kt
- * Created by thengoding.com on 2/1/2020
+ * TempClass.kt
+ * Created by thengoding.com on 3/1/2020
  * Copyright © 2020 The Ngoding. All rights reserved.
  *
  */
@@ -9,18 +9,19 @@
 package com.thengoding.cuacaku.core
 
 import android.Manifest
+import android.app.Activity
+import android.content.Intent
 import android.content.pm.PackageManager
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
+import android.os.Handler
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import com.google.android.gms.location.LocationServices
-import com.thengoding.cuacaku.R
-import com.thengoding.cuacaku.helpers.*
+import com.thengoding.cuacaku.helpers.SharePreferenceHelper
+import com.thengoding.cuacaku.locations.LocationHelper
 import com.thengoding.cuacaku.viewmodels.SplashViewModel
 
 class SplashActivity : AppCompatActivity() {
@@ -46,25 +47,8 @@ class SplashActivity : AppCompatActivity() {
                     listOf(Manifest.permission.ACCESS_FINE_LOCATION).toTypedArray(), 1
                 )
             }
-        }else{
-            getLocation()
-        }
-    }
-
-    private fun getLocation() {
-        val mFusedLocation = LocationServices.getFusedLocationProviderClient(this)
-        mFusedLocation.lastLocation.addOnSuccessListener(
-            this
-        ) { location ->
-//            startIntentService(location)
-            preferenceHelper.saveLocation(
-                "${location.latitude}",
-                "${location.longitude}"
-            )
-            splashViewModel.addLocation(
-                preferenceHelper.getLocation()[0],
-                preferenceHelper.getLocation()[1]
-            )
+        } else {
+            saveLocation()
         }
     }
 
@@ -83,7 +67,7 @@ class SplashActivity : AppCompatActivity() {
                         ) == PackageManager.PERMISSION_GRANTED
                     ) {
                         Toast.makeText(this, "Permission Granted", Toast.LENGTH_SHORT).show()
-                        getLocation()
+                        saveLocation()
                     }
                 } else {
                     Toast.makeText(this, "Permission Denied", Toast.LENGTH_SHORT).show()
@@ -94,30 +78,29 @@ class SplashActivity : AppCompatActivity() {
         }
     }
 
+    private fun saveLocation() {
+        locationHelper.getLatLon {
+            preferenceHelper.saveLocation(it)
+            splashViewModel.addLocation(it)
+        }
+    }
 
     private lateinit var splashViewModel: SplashViewModel
     private lateinit var preferenceHelper: SharePreferenceHelper
+    private lateinit var locationHelper: LocationHelper
+
+    private fun initData() {
+        locationHelper = LocationHelper(this)
+        preferenceHelper = SharePreferenceHelper(this)
+        splashViewModel = ViewModelProviders.of(this).get(SplashViewModel::class.java)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.splash_activity)
-        preferenceHelper = SharePreferenceHelper(this)
-        splashViewModel = ViewModelProviders.of(this).get(SplashViewModel::class.java)
-        Log.e("location","hasil ${preferenceHelper.getLocation()[0] == ""}")
-        if (preferenceHelper.getLocation()[0] == "") {
-            checkPermission()
-        } else {
-            splashViewModel.addLocation(
-                preferenceHelper.getLocation()[0],
-                preferenceHelper.getLocation()[1]
-            )
-        }
+        initData()
+        checkPermission()
         splashViewModel.getLocation().observe(this, Observer {
-            Log.e("lokasi", "${it[0]} ${it[1]}")
-            if (it.isNotEmpty()) {
-                splashViewModel.loadNewPage(this)
-            }
+            splashViewModel.loadNewPage(this)
         })
     }
-
 }

@@ -28,7 +28,8 @@ class HourlyAdapter(private val context: Context, private val hourlyData: List<H
                 R.layout.item_weather,
                 parent,
                 false
-            )
+            ),
+            context
         )
     }
 
@@ -41,7 +42,7 @@ class HourlyAdapter(private val context: Context, private val hourlyData: List<H
     }
 }
 
-class WeatherHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+class WeatherHolder(itemView: View, val context: Context) : RecyclerView.ViewHolder(itemView) {
     private lateinit var textHour: TextView
     private lateinit var textTemp: TextView
     private lateinit var imgIcon: ImageView
@@ -50,7 +51,7 @@ class WeatherHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         textTemp = itemView.findViewById(R.id.txt_item_temp)
         imgIcon = itemView.findViewById(R.id.img_item_icon)
         textHour.text = hourlyData.timestampLocal?.split("T")?.get(1) ?: "undefined"
-        textTemp.text = "${hourlyData.appTemp}\u2103"
+        textTemp.text = context.getString(R.string.temp, hourlyData.appTemp.toString())
         hourlyData.weather?.icon?.let { imgIcon.setImage(it) }
     }
 }

@@ -12,8 +12,5 @@
     <string name="today">Cuaca Hari ini</string>
     <string name="daily">7 hari kedepan</string>
     <string name="location">Mengambil Lokasi</string>
-    <string name="address_found">Alamat ditemukan</string>
-    <string name="no_address_found">Maaf, alamat tidak ditemukan</string>
-    <string name="invalid_lat_long_used">Lintang atau bujur yang digunakan tidak valid</string>
-    <string name="service_not_available">Geocoder tidak tersedia</string>
+    <string name="temp">%1$s\u2103</string>
 </resources>

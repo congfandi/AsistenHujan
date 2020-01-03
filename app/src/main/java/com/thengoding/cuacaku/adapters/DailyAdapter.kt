@@ -30,7 +30,7 @@ class DailyAdapter(private val context: Context, private val dailyData: List<Dai
                 R.layout.item_daily,
                 parent,
                 false
-            )
+            ), context
         )
     }
 
@@ -44,7 +44,7 @@ class DailyAdapter(private val context: Context, private val dailyData: List<Dai
     }
 }
 
-class DailyHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+class DailyHolder(itemView: View, val context: Context) : RecyclerView.ViewHolder(itemView) {
     lateinit var textDate: TextView
     lateinit var textPop: TextView
     lateinit var imgIcon: ImageView
@@ -54,7 +54,7 @@ class DailyHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         textPop = itemView.findViewById(R.id.txt_daily_pop)
         imgIcon = itemView.findViewById(R.id.img_daily_icon)
         textDate.text = dailyData.validDate?.let { dateToDay(it) }
-        textPop.text = "${dailyData.temp}\u2103"
+        textPop.text = context.getString(R.string.temp, dailyData.temp.toString())
         dailyData.weather?.icon?.let { imgIcon.setImage(it) }
     }
 }

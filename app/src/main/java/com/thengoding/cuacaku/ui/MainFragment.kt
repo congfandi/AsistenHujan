@@ -27,6 +27,7 @@ import com.thengoding.cuacaku.R
 import com.thengoding.cuacaku.adapters.DailyAdapter
 import com.thengoding.cuacaku.adapters.HourlyAdapter
 import com.thengoding.cuacaku.extentions.setImage
+import com.thengoding.cuacaku.locations.LocationHelper
 import com.thengoding.cuacaku.utils.dateToName
 import com.thengoding.cuacaku.viewmodels.MainViewModel
 
@@ -45,6 +46,7 @@ class MainFragment : Fragment() {
     private lateinit var txtWeatherInfo: TextView
     private lateinit var imgWeatherStatus: ImageView
     private lateinit var imgPlace: ImageView
+    private lateinit var locationHelper: LocationHelper
 
     private fun bindView(view: View): View {
         rcListWeather = view.findViewById(R.id.rc_list_weather)
@@ -65,36 +67,61 @@ class MainFragment : Fragment() {
         return bindView(inflater.inflate(R.layout.main_fragment, container, false))
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        liveData = ViewModelProviders.of(this).get(MainViewModel::class.java)
-        rcListWeather.layoutManager =
-            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+    private fun loadLocation() {
+        context?.let { liveData.loadLocationData(it) }
+    }
+
+    private fun loadWeather() {
         context?.let { liveData.loadCurrent(it) }
-        liveData.getCurrent().observe(this, Observer { currentData ->
-            txtLocation.text = "${currentData.cityName}, ${currentData.countryCode}"
-            txtWeatherTemp.text = "${currentData.temp}\u2103"
+        context?.let { liveData.loadHourly(it) }
+        context?.let { liveData.loadDaily(it) }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun bindData() {
+        liveData.getLocationData().observe(this, Observer {
+            txtLocation.text = it.village
             txtDay.text = dateToName()
+            loadWeather()
+        })
+
+        liveData.getCurrent().observe(this, Observer { currentData ->
+            txtWeatherTemp.text = getString(R.string.temp, currentData.temp.toString())
             txtWeatherInfo.text = currentData.weather?.description ?: ""
             currentData.weather?.icon?.let { imgWeatherStatus.setImage(it) }
         })
-        context?.let { liveData.loadHourly(it) }
+
         liveData.getHourly().observe(this, Observer {
             rcListWeather.adapter =
                 context?.let { context -> HourlyAdapter(context, it) }
         })
-
-        imgPlace.setOnClickListener {
-            Toast.makeText(context, "Hai", Toast.LENGTH_LONG).show()
-        }
-
-        rcListWeatherDaily.layoutManager = LinearLayoutManager(context)
-        context?.let { liveData.loadDaily(it) }
         liveData.getDaily().observe(this, Observer {
             rcListWeatherDaily.adapter =
                 context?.let { context -> DailyAdapter(context, it) }
         })
+    }
+
+    private fun initData() {
+        liveData = ViewModelProviders.of(this).get(MainViewModel::class.java)
+        rcListWeather.layoutManager =
+            LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        rcListWeatherDaily.layoutManager = LinearLayoutManager(context)
+        locationHelper = LocationHelper(context!!)
+
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        initData()
+        loadLocation()
+        bindData()
+        imgPlace.setOnClickListener {
+            Toast.makeText(context, getString(R.string.location), Toast.LENGTH_LONG).show()
+            loadLocation()
+        }
+
+
     }
 
 }

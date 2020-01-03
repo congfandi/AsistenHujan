@@ -11,22 +11,26 @@ package com.thengoding.cuacaku.helpers
 import android.content.Context
 import android.content.SharedPreferences
 import android.util.Log
+import com.google.gson.Gson
+import com.thengoding.cuacaku.models.LocationData
 
 class SharePreferenceHelper(val context: Context) {
     private val pref: SharedPreferences =
         context.getSharedPreferences(DATABASE_NAME, Context.MODE_PRIVATE)
-
-    fun saveLocation(lat: String, lon: String) {
+    private val gson = Gson()
+    fun saveLocation(location: LocationData) {
+        val locationString = gson.toJson(location)
         pref.edit()
-            .putString("lat", lat)
-            .putString("lon", lon)
+            .putString(LOCATION, locationString)
             .apply()
     }
 
-    fun getLocation(): List<String> {
-        val lat = pref.getString("lat", "")!!
-        val lon = pref.getString("lon", "")!!
-        Log.e("location", "$lat $lon")
-        return listOf(lat, lon)
+    fun isEmpty(): Boolean {
+        return pref.getString(LOCATION, "") == ""
+    }
+
+    fun getLocation(): LocationData {
+        val locationJson = pref.getString(LOCATION, "")!!
+        return gson.fromJson(locationJson, LocationData::class.java)
     }
 }

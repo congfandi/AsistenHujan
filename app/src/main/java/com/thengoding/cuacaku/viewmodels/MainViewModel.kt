@@ -17,6 +17,8 @@ import com.thengoding.cuacaku.api.ApiService
 import com.thengoding.cuacaku.helpers.API_KEY
 import com.thengoding.cuacaku.helpers.LANGUAGE
 import com.thengoding.cuacaku.helpers.SharePreferenceHelper
+import com.thengoding.cuacaku.locations.LocationHelper
+import com.thengoding.cuacaku.models.LocationData
 import com.thengoding.cuacaku.models.current.CurrentData
 import com.thengoding.cuacaku.models.current.CurrentResponse
 import com.thengoding.cuacaku.models.daily.DailyData
@@ -32,11 +34,13 @@ class MainViewModel : ViewModel() {
     private val currentData = MutableLiveData<CurrentData>()
     private val hourlyData = MutableLiveData<List<HourlyData>>()
     private val dailyData = MutableLiveData<List<DailyData>>()
+    private var locationData = MutableLiveData<LocationData>()
     private lateinit var queries: List<String>
+
 
     internal fun loadCurrent(context: Context) {
         val location = SharePreferenceHelper(context).getLocation()
-        queries = listOf(location[0],location[1], API_KEY, LANGUAGE)
+        queries = listOf(location.lat.toString(), location.lon.toString(), API_KEY, LANGUAGE)
         val apiService = ApiClient.config()?.create(ApiService::class.java)
         val request = apiService?.current(queries[0], queries[1], queries[2], queries[3])
         request?.enqueue(object : Callback<CurrentResponse> {
@@ -60,7 +64,7 @@ class MainViewModel : ViewModel() {
 
     internal fun loadHourly(context: Context) {
         val location = SharePreferenceHelper(context).getLocation()
-        queries = listOf(location[0],location[1], API_KEY, LANGUAGE)
+        queries = listOf(location.lat.toString(), location.lon.toString(), API_KEY, LANGUAGE)
         val apiService = ApiClient.config()?.create(ApiService::class.java)
         val request = apiService?.hourly(queries[0], queries[1], queries[2], queries[3])
         request?.enqueue(object : Callback<HourlyResponse> {
@@ -83,7 +87,7 @@ class MainViewModel : ViewModel() {
 
     internal fun loadDaily(context: Context) {
         val location = SharePreferenceHelper(context).getLocation()
-        queries = listOf(location[0],location[1], API_KEY, LANGUAGE)
+        queries = listOf(location.lat.toString(), location.lon.toString(), API_KEY, LANGUAGE)
         val apiService = ApiClient.config()?.create(ApiService::class.java)
         val request = apiService?.daily(queries[0], queries[1], queries[2], queries[3])
         request?.enqueue(object : Callback<DailyResponse> {
@@ -102,5 +106,16 @@ class MainViewModel : ViewModel() {
 
     internal fun getDaily(): LiveData<List<DailyData>> {
         return dailyData
+    }
+
+    internal fun loadLocationData(context: Context) {
+        LocationHelper(context).getLatLon {
+            SharePreferenceHelper(context).saveLocation(it)
+            locationData.postValue(it)
+        }
+    }
+
+    internal fun getLocationData(): LiveData<LocationData> {
+        return locationData
     }
 }

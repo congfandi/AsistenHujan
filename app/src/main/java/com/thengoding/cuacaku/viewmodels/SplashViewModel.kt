@@ -15,16 +15,17 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.thengoding.cuacaku.core.MainActivity
+import com.thengoding.cuacaku.models.LocationData
 
 class SplashViewModel : ViewModel() {
 
-    private val locations = MutableLiveData<List<String>>()
+    private val locations = MutableLiveData<LocationData>()
 
-    internal fun addLocation(lat: String, lon: String) {
-        locations.postValue(listOf(lat, lon))
+    internal fun addLocation(locationData: LocationData) {
+        locations.postValue(locationData)
     }
 
-    internal fun getLocation(): LiveData<List<String>> {
+    internal fun getLocation(): LiveData<LocationData> {
         return locations
     }
 
@@ -34,6 +35,6 @@ class SplashViewModel : ViewModel() {
             val intent = Intent(activity, MainActivity::class.java)
             activity.startActivity(intent)
             activity.finish()
-        }, 3000)
+        }, 1000)
     }
 }
