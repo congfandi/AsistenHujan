@@ -75,7 +75,7 @@ class MainFragment : Fragment() {
         liveData.getCurrent().observe(this, Observer { currentData ->
             txtLocation.text = "${currentData.cityName}, ${currentData.countryCode}"
             txtWeatherTemp.text = "${currentData.temp}\u2103"
-            txtDay.text = "${currentData.datetime?.split(":")?.get(0)?.let { dateToName(it) }}"
+            txtDay.text = dateToName()
             txtWeatherInfo.text = currentData.weather?.description ?: ""
             currentData.weather?.icon?.let { imgWeatherStatus.setImage(it) }
         })

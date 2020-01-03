@@ -20,13 +20,11 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.google.android.gms.location.LocationServices
 import com.thengoding.cuacaku.R
-import com.thengoding.cuacaku.extentions.hide
-import com.thengoding.cuacaku.extentions.show
-import com.thengoding.cuacaku.helpers.SharePreferenceHelper
+import com.thengoding.cuacaku.helpers.*
 import com.thengoding.cuacaku.viewmodels.SplashViewModel
-import kotlinx.android.synthetic.main.splash_activity.*
 
 class SplashActivity : AppCompatActivity() {
+
     private fun checkPermission() {
         if (ContextCompat.checkSelfPermission(
                 this,
@@ -48,6 +46,8 @@ class SplashActivity : AppCompatActivity() {
                     listOf(Manifest.permission.ACCESS_FINE_LOCATION).toTypedArray(), 1
                 )
             }
+        }else{
+            getLocation()
         }
     }
 
@@ -56,6 +56,7 @@ class SplashActivity : AppCompatActivity() {
         mFusedLocation.lastLocation.addOnSuccessListener(
             this
         ) { location ->
+//            startIntentService(location)
             preferenceHelper.saveLocation(
                 "${location.latitude}",
                 "${location.longitude}"
@@ -102,6 +103,7 @@ class SplashActivity : AppCompatActivity() {
         setContentView(R.layout.splash_activity)
         preferenceHelper = SharePreferenceHelper(this)
         splashViewModel = ViewModelProviders.of(this).get(SplashViewModel::class.java)
+        Log.e("location","hasil ${preferenceHelper.getLocation()[0] == ""}")
         if (preferenceHelper.getLocation()[0] == "") {
             checkPermission()
         } else {
@@ -111,7 +113,7 @@ class SplashActivity : AppCompatActivity() {
             )
         }
         splashViewModel.getLocation().observe(this, Observer {
-            Log.e("lokasi","${it[0]} ${it[1]}")
+            Log.e("lokasi", "${it[0]} ${it[1]}")
             if (it.isNotEmpty()) {
                 splashViewModel.loadNewPage(this)
             }

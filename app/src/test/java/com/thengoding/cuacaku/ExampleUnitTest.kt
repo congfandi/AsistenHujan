@@ -13,6 +13,6 @@ import org.junit.Assert.*
 class ExampleUnitTest {
     @Test
     fun addition_isCorrect() {
-        assertEquals("Kamis, 2 Januari 2020", dateToName("2020-01-02"))
+        assertEquals("Kamis, 2 Januari 2020", dateToName())
     }
 }

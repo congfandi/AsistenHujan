@@ -10,7 +10,9 @@ package com.thengoding.cuacaku.utils
 
 import android.os.Build
 import androidx.annotation.RequiresApi
+import java.text.SimpleDateFormat
 import java.time.LocalDate
+import java.util.*
 
 @RequiresApi(Build.VERSION_CODES.O)
 fun dateToDay(date: String): String {
@@ -21,7 +23,9 @@ fun dateToDay(date: String): String {
 }
 
 @RequiresApi(Build.VERSION_CODES.O)
-fun dateToName(date: String): String {
+fun dateToName(): String {
+    val format = SimpleDateFormat("yyyy-M-dd")
+    val currentDate = format.format(Date())
     val moths = listOf(
         "Januari",
         "Februari",
@@ -36,8 +40,8 @@ fun dateToName(date: String): String {
         "Novemer",
         "Desember"
     )
-    val day = dateToDay(date)
-    val dates = date.split("-")
+    val day = dateToDay(currentDate)
+    val dates = currentDate.split("-")
     val myDate = LocalDate.of(dates[0].toInt(), dates[1].toInt(), dates[2].toInt())
     return "$day, ${myDate.dayOfMonth} ${moths[myDate.monthValue - 1]} ${myDate.year}"
 }
